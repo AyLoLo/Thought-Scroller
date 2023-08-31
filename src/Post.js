@@ -1,9 +1,9 @@
 import React from "react";
 
-function Post(){
+function Post({post}){
     return (
-        <div className="text-white">
-            Filler Content
+        <div className="text-white border-white md:border-4">
+            {post.title}
         </div>
     )
 }
