@@ -25,7 +25,7 @@ class User(db.Model, SerializerMixin):
     replies = db.relationship("Reply", back_populates="user", cascade="all, delete-orphan")
 
     # Serializer
-    serialize_rules = ('-posts', '-comments', 'replies')
+    serialize_rules = ('-comments', 'replies')
 
     # Login/Signup Data
     def __repr__(self):
@@ -54,7 +54,7 @@ class Post(db.Model, SerializerMixin):
     comments = db.relationship("Comment", back_populates="post")
 
     # Serializer
-    serialize_rules = ("-user", "-comments")
+    serialize_rules = ("-comments",)
 
 class Comment(db.Model, SerializerMixin):
     __tablename__ = "comments"
