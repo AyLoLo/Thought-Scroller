@@ -113,7 +113,8 @@ class Posts(Resource):
                 title = data.get('title'),
                 content = data.get('content'),
                 vote_count = data.get('vote_count'),
-                comment_count = data.get('comment_count')
+                comment_count = data.get('comment_count'),
+                date_created = data.get('date_created')
             )
             db.session.add(new_post)
             db.session.commit()

@@ -120,7 +120,7 @@ function App() {
   
     return (
     <div className="bg-black flex flex-col h-screen justify-evenly">
-      <div className="md:border-4 border-blue-700 w-full bg-black fixed top-0">
+      <div className="md:border-4 border-blue-900 w-full bg-black fixed top-0">
         <Header currentUser={currentUser} logout={logout}/>
       </div>
         <Routes>
@@ -131,7 +131,7 @@ function App() {
           { currentUser ? <Route path="/create_post" element={<CreatePost addNewPost={addNewPost} updateNewPost={updateNewPost}/>} /> : null}
           <Route path="/latest" element={<LatestPosts posts={posts}/>} /> 
         </Routes>
-        <div className='md:border-4 border-blue-700 w-full bg-black fixed bottom-0'>
+        <div className='md:border-4 border-blue-900 w-full bg-black fixed bottom-0'>
           <Footer currentUser={currentUser}/>
         </div>
     </div>

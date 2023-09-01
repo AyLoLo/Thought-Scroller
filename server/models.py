@@ -50,6 +50,7 @@ class Post(db.Model, SerializerMixin):
     content = db.Column(db.String, nullable=False)
     vote_count = db.Column(db.Integer, default=1)
     comment_count = db.Column(db.Integer, default=0)
+    date_created = db.Column(db.DateTime, default=datetime.utcnow)
 
     # Relationships 
     user = db.relationship("User", back_populates="posts")

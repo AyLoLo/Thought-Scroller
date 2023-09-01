@@ -2,10 +2,10 @@ import React from "react";
 
 function Post({post}){
     return (
-        <div className="text-white border-white md:border-4 grid grid-rows-3 pl-5 pt-5 relative">
+        <div className="text-white border-blue-900 md:border-4 grid grid-rows-3 pl-5 pt-5 relative">
             <h1 className="grid grid-rows-2">
-                <span>Posted by {post.posted_by_user}</span>
-                <span className="font-bold text-2xl">{post.title}</span>
+                <span>Posted by <span className="text-yellow-500">{post.posted_by_user}</span></span>
+                <span className="font-bold text-2xl text-yellow-500">{post.title}</span>
             </h1>
             <span>
                 {post.content}
