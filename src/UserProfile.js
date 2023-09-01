@@ -15,6 +15,8 @@ function UserProfile({currentUser, posts}) {
         return <Post post={post} key={post.id}/>
     })    
 
+    currentUser.user_post_count = userPosts.length
+
     return (
         <div className="grid grid-rows-2 h-4/5 gap-10">
             <div className="grid grid-rows-2 md:border-4 border-blue-900 p-10 mx-10">

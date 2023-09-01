@@ -115,7 +115,6 @@ function App() {
     fetch('/logout', { method:"DELETE"})
     navigate('/')
   }
-
   
     return (
     <div className="bg-black flex flex-col h-screen justify-evenly">
