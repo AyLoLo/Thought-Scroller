@@ -3,7 +3,10 @@ import Post from "./Post";
 
 function LatestPosts({posts}) {
 
-    const post = posts.map(post => {
+    const sortedPosts = [...posts].sort((b, a) => a.id - b.id);
+
+
+    const post = sortedPosts.map(post => {
         return <Post post={post} key={post.id}/>
     })
 
