@@ -109,7 +109,7 @@ class Posts(Resource):
         try:
             data = request.get_json()
             new_post = Post(
-                user_id = data.get('user_id'),
+                posted_by_user = data.get('posted_by_user'),
                 title = data.get('title'),
                 content = data.get('content'),
                 vote_count = data.get('vote_count'),

@@ -46,7 +46,7 @@ function App() {
   function addNewPost(event){
     event.preventDefault()
 
-    const newUserPost = {...newPost, ['user_id'] : currentUser.id}
+    const newUserPost = {...newPost, ['posted_by_user'] : currentUser.username}
     console.log(newUserPost)
 
     fetch("http://127.0.0.1:7000/posts", {

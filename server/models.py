@@ -44,7 +44,7 @@ class Post(db.Model, SerializerMixin):
 
     # Fields
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    posted_by_user = db.Column(db.Integer, db.ForeignKey("users.username"), nullable=False)
 
     title = db.Column(db.String, nullable=False)
     content = db.Column(db.String, nullable=False)
