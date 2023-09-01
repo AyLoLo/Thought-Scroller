@@ -46,8 +46,7 @@ function App() {
   function addNewPost(event){
     event.preventDefault()
 
-    const newUserPost = {...newPost, ['posted_by_user'] : currentUser.username}
-    console.log(newUserPost)
+    const newUserPost = {...newPost, 'posted_by_user' : currentUser.username}
 
     fetch("http://127.0.0.1:7000/posts", {
       method: "POST",
@@ -82,7 +81,7 @@ function App() {
       if(res.ok){
         res.json()
         .then(user => setCurrentUser(user))
-        // navigate('/')
+        navigate('/')
       } else {
         console.log("Invalid Username or Password.")
         alert("Invalid Username or Password")

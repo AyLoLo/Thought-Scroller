@@ -3,9 +3,17 @@ import Post from './Post';
 
 function UserProfile({currentUser, posts}) {
 
-    const post = posts.map(post => {
-        return <Post post={post} key={post.id}/>
+    const userPosts = posts.filter((post) => {
+        if(post.posted_by_user === currentUser.username) {
+            return true
+        } else {
+            return null
+        }
     })
+
+    const post = userPosts.map(post => {
+        return <Post post={post} key={post.id}/>
+    })    
 
     return (
         <div className="grid grid-rows-2 h-4/5 gap-10">
