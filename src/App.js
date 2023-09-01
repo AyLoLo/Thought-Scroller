@@ -60,7 +60,7 @@ function App() {
     .then(res => {
       if(res.ok){
         res.json()
-        .then(newUserPost => setPosts(...posts, newUserPost))
+        .then(newUserPost => setPosts([...posts, newUserPost]))
         navigate('/latest')
       } else {
         console.log("An error has occurred")
@@ -82,7 +82,7 @@ function App() {
       if(res.ok){
         res.json()
         .then(user => setCurrentUser(user))
-        navigate('/')
+        // navigate('/')
       } else {
         console.log("Invalid Username or Password.")
         alert("Invalid Username or Password")
@@ -129,7 +129,7 @@ function App() {
           { !currentUser ? <Route path="/signup" element={<Signup attemptSignup={attemptSignup}/>} /> : null }
           { currentUser ? <Route path={`/${currentUser.username}`} element={<UserProfile currentUser={currentUser} posts={posts}/>} /> : null }
           { currentUser ? <Route path="/create_post" element={<CreatePost addNewPost={addNewPost} updateNewPost={updateNewPost}/>} /> : null}
-          <Route path="/latest" element={<LatestPosts/>} /> 
+          <Route path="/latest" element={<LatestPosts posts={posts}/>} /> 
         </Routes>
         <div className='md:border-4 border-blue-700 w-full bg-black fixed bottom-0'>
           <Footer currentUser={currentUser}/>

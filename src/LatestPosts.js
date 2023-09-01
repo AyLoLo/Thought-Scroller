@@ -1,12 +1,19 @@
 import React from "react";
+import Post from "./Post";
 
-function LatestPosts() {
+function LatestPosts({posts}) {
+
+    const post = posts.map(post => {
+        return <Post post={post} key={post.id}/>
+    })
 
     return (
-        <div className="text-white">
-            Some Filler Nonsense
+        <div className="h-5/6 overflow-auto">
+            <div className="grid grid-flow-row gap-10 w-3/4 mx-10">
+                {post}
+            </div>
         </div>
-    )
+    );
 }
 
 export default LatestPosts;

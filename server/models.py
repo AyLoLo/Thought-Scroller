@@ -34,7 +34,9 @@ class User(db.Model, SerializerMixin):
     def to_dict(self):
         return {
             "id": self.id,
-            "username": self.username
+            "username": self.username,
+            "user_post_count": self.user_post_count,
+            "date_created": self.date_created
         }
 
 class Post(db.Model, SerializerMixin):
