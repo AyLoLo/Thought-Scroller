@@ -7,7 +7,7 @@ function Footer({currentUser}) {
         <ul className="text-white justify-evenly flex">
              <NavLink to="/">Thought Scroll</NavLink>
              { currentUser ? <NavLink to="/create_post">Create</NavLink> : null }
-             <NavLink to="/communities">Communities</NavLink>             
+             <NavLink to="/latest">Latest</NavLink>             
         </ul>
     )
 }

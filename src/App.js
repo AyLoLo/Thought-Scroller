@@ -7,6 +7,7 @@ import Footer from './Footer';
 import Login from './Login';
 import Signup from './Signup';
 import Home from './Home';
+import LatestPosts from './LatestPosts';
 import UserProfile from './UserProfile';
 import CreatePost from './CreatePost';
 
@@ -56,8 +57,16 @@ function App() {
       },
       body: JSON.stringify(newUserPost)
     })
-    .then(response => response.json())
-    .then(newUserPost => setPosts([...posts, newUserPost]))
+    .then(res => {
+      if(res.ok){
+        res.json()
+        .then(newUserPost => setPosts(...posts, newUserPost))
+        navigate('/latest')
+      } else {
+        console.log("An error has occurred")
+        alert("And error has occurred")
+      }
+    })
   }
 
   function attemptLogin(userInfo) {
@@ -119,7 +128,8 @@ function App() {
           { !currentUser ? <Route path="/login" element={<Login attemptLogin={attemptLogin}/>} /> : null }
           { !currentUser ? <Route path="/signup" element={<Signup attemptSignup={attemptSignup}/>} /> : null }
           { currentUser ? <Route path={`/${currentUser.username}`} element={<UserProfile currentUser={currentUser} posts={posts}/>} /> : null }
-          { currentUser ? <Route path="/create_post" element={<CreatePost addNewPost={addNewPost} updateNewPost={updateNewPost}/>} /> : null} 
+          { currentUser ? <Route path="/create_post" element={<CreatePost addNewPost={addNewPost} updateNewPost={updateNewPost}/>} /> : null}
+          <Route path="/latest" element={<LatestPosts/>} /> 
         </Routes>
         <div className='md:border-4 border-blue-700 w-full bg-black fixed bottom-0'>
           <Footer currentUser={currentUser}/>

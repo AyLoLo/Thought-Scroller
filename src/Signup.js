@@ -26,10 +26,10 @@ function Signup({attemptSignup}) {
                 <form onSubmit={handleSubmit}>
                     <div className="grid grid-rows-5">
                         <label className="text-white">Username</label>
-                        <input className="text-black" type="text" onChange={handleChangeUsername} value={username} placeholder="Username"/>
+                        <input className="text-black p-1" type="text" onChange={handleChangeUsername} value={username} placeholder="Username"/>
                         <br></br>
                         <label className="text-white">Password</label>
-                        <input className="text-black" type="password" onChange={handleChangePassword} value={password} placeholder="Password"/>
+                        <input className="text-black p-1" type="password" onChange={handleChangePassword} value={password} placeholder="Password"/>
                         <br></br>
                         <br></br>
                         <button className="text-white md:border-4 border-white mx-60 py-2" type="submit">Signup</button>
