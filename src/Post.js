@@ -13,14 +13,15 @@ function Post({post}){
         }  else {
             setUpVote(upVote => !upVote)
             post.vote_count --
-            console.log("hello")
         }
     }
 
     function downVoted(){
-        if (setDownVote === true) {
+        if (downVote === false) {
+            setDownVote(downVote => !downVote)
             post.vote_count --
         } else {
+            setDownVote(downVote => !downVote)            
             post.vote_count ++
         }
     }
@@ -35,7 +36,7 @@ function Post({post}){
                 {post.content}
             </span>
             <h1 className="grid grid-cols-2">
-                <span className="absolute bottom-0"><span onClick={() => upVoted()}>{upVote ? "💖" : "🤍"}</span>{post.vote_count}</span>
+                <span className="absolute bottom-0"><span onClick={() => upVoted()}> {upVote ? "💖" : "🤍"} </span> {post.vote_count} <span onClick={() => downVoted()}> {downVote ? "🖤" : "💜"} </span></span>
                 <span className="absolute bottom-0 right-5">💬{post.comment_count}</span>
             </h1>
         </div>
