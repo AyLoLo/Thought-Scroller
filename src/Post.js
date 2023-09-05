@@ -1,6 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 
 function Post({post}){
+
+    const [vote, setVote] = useState(false)
+
     return (
         <div className="text-white border-blue-900 md:border-4 grid grid-rows-3 pl-5 pt-5 relative">
             <h1 className="grid grid-rows-2">
@@ -11,7 +14,7 @@ function Post({post}){
                 {post.content}
             </span>
             <h1 className="grid grid-cols-2">
-                <span className="absolute bottom-0">⬆️{post.vote_count}⬇️</span>
+                <span onClick={() => setVote((vote) => !vote)} className="absolute bottom-0"> {vote ?  `💖 ${post.vote_count}` : `🤍  ${post.vote_count}`} </span>
                 <span className="absolute bottom-0 right-5">💬{post.comment_count}</span>
             </h1>
         </div>
