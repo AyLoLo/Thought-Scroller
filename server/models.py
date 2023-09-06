@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 from sqlalchemy_serializer import SerializerMixin
+from sqlalchemy.ext.associationproxy import association_proxy
 from datetime import datetime
 
 metadata = MetaData(naming_convention={
@@ -20,12 +21,14 @@ class User(db.Model, SerializerMixin):
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
 
     # Relationships
-    posts = db.relationship("Post", back_populates="user", cascade="all, delete-orphan")
+    postvotes = db.relationship("Postvote", back_populates="user", cascade="all, delete-orphan")
     comments = db.relationship("Comment", back_populates="user", cascade="all, delete-orphan")
     replies = db.relationship("Reply", back_populates="user", cascade="all, delete-orphan")
 
+    posts = association_proxy("postvotes", "post", creator=lambda p: Postvote(post=p))
+
     # Serializer
-    serialize_rules = ('-posts', '-comments', 'replies')
+    serialize_rules = ('-post_votes', '-comments', 'replies')
 
     # Login/Signup Data
     def __repr__(self):
@@ -53,11 +56,13 @@ class Post(db.Model, SerializerMixin):
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
 
     # Relationships 
-    user = db.relationship("User", back_populates="posts")
+    postvotes = db.relationship("Postvote", back_populates="post", cascade="all, delete-orphan")
     comments = db.relationship("Comment", back_populates="post")
 
+    users = association_proxy("Postvotes", "user", creator=lambda u: Postvote(user=u))
+
     # Serializer
-    serialize_rules = ("-user", "-comments")
+    serialize_rules = ("-post_votes", "-comments")
 
 class Comment(db.Model, SerializerMixin):
     __tablename__ = "comments"
@@ -95,3 +100,19 @@ class Reply(db.Model, SerializerMixin):
 
     # Serializer
     serialize_rules = ("-user", "-comment")
+
+
+class Postvote(db.Model, SerializerMixin):
+    __table_name__ = "postvotes"
+    
+    # Fields
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+
+    # Relationships
+    user = db.relationship("User", back_populates="postvotes")
+    post = db.relationship("Post", back_populates="postvotes")
+
+    # Serializer 
+    serialize_rules = ("-user", "-post")
